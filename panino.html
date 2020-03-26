@@ -1,0 +1,108 @@
+<!DOCTYPE html> 
+<html lang="it"> 
+<head> 
+<meta charset="utf-8"> 
+<title>Panino</title> 
+
+<script>
+//Se la comanda viene eserguita correttamente va avanti se no appare un allert
+function panino() {
+document.getElementById('panino').style.display='none'
+}
+function sacchetto() {
+document.getElementById('panino').style.display='block'
+}
+//Conferma
+function conferma(){
+var panino=1
+var sac1=0
+var sac2=0
+var sac3=0
+var sac4=0
+var sac5=0
+var sac6=0
+sac1=sac1+panino
+sac2=sac2+panino
+sac3=sac3+panino
+sac4=sac4+panino
+sac5=sac5+panino
+sac6=sac6+panino
+}
+//Random comanda
+x=random //numero panini che deve essere tra 1 e 5
+nomiclassi = ["3 sala A", "3 sala B", "5 eno C", "1 B", "3 eno A", "3 tr B"] //random classi
+
+
+</script>
+
+<style> 
+body {
+background-color: lightblue;
+} 
+h1 {
+text-align: center;
+}
+img {
+width: 110px;
+height: 150px;
+}
+#sac1 {
+position: relative;
+left: 20px;
+}
+#sac2 {
+position: relative;
+left: 263px;
+bottom: 188px;
+}
+#sac3 {
+position: relative;
+left: 507px;
+bottom: 376px;
+}
+#sac4 {
+position: relative;
+bottom: 564px;
+left: 751px;
+}
+#sac5 {
+position: relative;
+bottom: 752px;
+left: 995px;
+}
+#sac6 {
+position: relative;
+bottom: 940px;
+left: 1239px;
+}
+#text {
+width: 500px;
+background-color: lightblue;
+}
+#panino {                    /*Div*/
+position: relative;
+bottom: 880px;
+left: 464px;
+width: 454px;
+}
+#pan{                       /*Immagine*/     
+width:450px;
+height:450px;
+}
+</style>
+</head> 
+
+<body> 
+<h1>Metti i panini nel sacchetto giusto</h1>
+<p id="text"></p><br>
+<input type="button" value="CONFERMA" id="conferma" onclick="pippo()">
+<div id="sac1"><p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png" alt="busta" onclick="sacchetto()"><br>CLASSE 3 SALA A</p></div>
+<div id="sac2"><p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png" alt="busta" onclick="sacchetto()"><br>CLASSE 3 SALA B</p></div>
+<div id="sac3"><p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png" alt="busta" onclick="sacchetto()"><br>CLSSE 5 ENO C</p></div>
+<div id="sac4"><p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png" alt="busta" onclick="sacchetto()"><br>CLASSE 1 B</p></div>
+<div id="sac5"><p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png" alt="busta" onclick="sacchetto()"><br>CLASSE 3 ENO A</p></div>
+<div id="sac6"><p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png" alt="busta" onclick="sacchetto()"><br>CLASSE 3 TR B</p></div>
+<div id="panino"><p><img id="pan" src="https://www.pizzaportamivia.it/wp-content/uploads/panino.png" alt="panino" onclick="panino()"></p></div>
+</body> 
+
+</html>
