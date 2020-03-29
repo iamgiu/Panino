@@ -28,11 +28,43 @@ sac4=sac4+panino
 sac5=sac5+panino
 sac6=sac6+panino
 }
-//Random comanda
-x=random //numero panini che deve essere tra 1 e 5
-nomiclassi = ["3 sala A", "3 sala B", "5 eno C", "1 B", "3 eno A", "3 tr B"] //random classi
+//Genera una comanda randomica
+function genera(){
+frasi = new Array();
+frasi[0] = "Metti 1 panino nella classe 3 sala A";
+frasi[1] = "Metti 2 panino nella classe 3 sala A";
+frasi[2] = "Metti 3 panino nella classe 3 sala A";
+frasi[3] = "Metti 4 panino nella classe 3 sala A";
+frasi[4] = "Metti 5 panino nella classe 3 sala A";
+frasi[5] = "Metti 1 panino nella classe 3 sala B";
+frasi[6] = "Metti 2 panino nella classe 3 sala B";
+frasi[7] = "Metti 3 panino nella classe 3 sala B";
+frasi[8] = "Metti 4 panino nella classe 3 sala B";
+frasi[9] = "Metti 5 panino nella classe 3 sala B";
+frasi[10] = "Metti 1 panino nella classe 5 eno C";
+frasi[11] = "Metti 2 panino nella classe 5 eno C";
+frasi[12] = "Metti 3 panino nella classe 5 eno C";
+frasi[13] = "Metti 4 panino nella classe 5 eno C";
+frasi[14] = "Metti 5 panino nella classe 5 eno C";
+frasi[15] = "Metti 1 panino nella classe 1 B";
+frasi[16] = "Metti 2 panino nella classe 1 B";
+frasi[17] = "Metti 3 panino nella classe 1 B";
+frasi[18] = "Metti 4 panino nella classe 1 B";
+frasi[19] = "Metti 5 panino nella classe 1 B";
+frasi[20] = "Metti 1 panino nella classe 3 eno A";
+frasi[21] = "Metti 2 panino nella classe 3 eno A";
+frasi[22] = "Metti 3 panino nella classe 3 eno A";
+frasi[23] = "Metti 4 panino nella classe 3 eno A";
+frasi[24] = "Metti 5 panino nella classe 3 eno A";
+frasi[25] = "Metti 1 panino nella classe 3 tr B";
+frasi[26] = "Metti 2 panino nella classe 3 tr B";
+frasi[27] = "Metti 3 panino nella classe 3 tr B";
+frasi[28] = "Metti 4 panino nella classe 3 tr B";
+frasi[29] = "Metti 5 panino nella classe 3 tr B";
+var id = Math.round(Math.random() * (frasi.length - 1)); 
+document.getElementById("text").value=(frasi[id]);
 
-
+}
 </script>
 
 <style> 
@@ -94,7 +126,8 @@ height:450px;
 
 <body> 
 <h1>Metti i panini nel sacchetto giusto</h1>
-<p id="text"></p><br>
+<input type="text" id="text">
+<input type="button" value="GENERA" id="genera" onclick="genera()"><br><br><br>
 <input type="button" value="CONFERMA" id="conferma" onclick="pippo()">
 <div id="sac1"><p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png" alt="busta" onclick="sacchetto()"><br>CLASSE 3 SALA A</p></div>
 <div id="sac2"><p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png" alt="busta" onclick="sacchetto()"><br>CLASSE 3 SALA B</p></div>
