@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="utf-8">
+    <title>Panino</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <!-- <script src="sweetalert2.all.min.js"></script> -->
+
+
+    <script>
+        //Pulsante inizia
+        function inizia()
+        {
+            document.getElementById("body").style.display = "block";
+            document.getElementById("inizia").style.display = "none";
+        }
+        //Variabili globali
+        let sac1 = 0;
+        let sac2 = 0;
+        let sac3 = 0;
+        let sac4 = 0;
+        let sac5 = 0;
+        let sac6 = 0;
+        sale = ["3 sala A", "3 sala B", "5 eno C", "1 B", "3 eno A", "3 tr B"];
+        tipi = ["caprese", "salame"];
+        let numerosacchetto;
+        let numeropanini;
+        let paninid;
+        //Panino appare e scompare + sacchetto() con variabili per incrementare il numero di panini nei sacchetti
+        function panino()
+        {
+            document.getElementById('panino').style.display = 'none';
+            document.getElementById('sal').style.display = 'none';
+        }
+        //Success
+        function showSuccess()
+        {
+            Swal.fire({
+                icon: 'success',
+                title: "CE L'HAI FATTA",
+                text: 'ORA NON TI MONTARE LA TESTA...CONTINUIAMO?',
+                showConfirmButton: true,
+            })
+        }
+        //mistake
+        function showMistake(bagNumber, bagElementsNumber)
+        {
+            let errorDebugString = "RIPROVA! NEL SACCHETTO " + bagNumber + " CI SONO " + bagElementsNumber + " PANINI, INVECE CE NE DEVONO ESSERE " + numeropanini;
+            Swal.fire({
+                icon: 'error',
+                title: 'OPS',
+                text: errorDebugString,
+            })
+        }
+        //Sacchetto
+        function sacchetto(id)
+        {
+            
+            if (typeof (id) == "number") id = "sac" + id;
+            console.log(id);
+            document.getElementById('panino').style.display = 'block';
+            if (id == "sac1")
+            {
+                sac1 = sac1 + 1;
+                console.log(sac1);
+            }
+            if (id == "sac2")
+            {
+                sac2 = sac2 + 1;
+                console.log(sac2);
+            }
+            if (id == "sac3")
+            {
+                sac3 = sac3 + 1;
+                console.log(sac3);
+            }
+            if (id == "sac4")
+            {
+                sac4 = sac4 + 1;
+                console.log(sac4);
+            }
+            if (id == "sac5")
+            {
+                sac5 = sac5 + 1;
+                console.log(sac5);
+            }
+            if (id == "sac6")
+            {
+                sac6 = sac6 + 1;
+                console.log(sac6);
+            }
+        }
+        //Conferma
+        function conferma()
+        {
+            if (numerosacchetto == 0) sac1 == numeropanini ? showSuccess() : showMistake(1, sac1);
+            if (numerosacchetto == 1) sac2 == numeropanini ? showSuccess() : showMistake(2, sac2);
+            if (numerosacchetto == 2) sac3 == numeropanini ? showSuccess() : showMistake(3, sac3);
+            if (numerosacchetto == 3) sac4 == numeropanini ? showSuccess() : showMistake(4, sac4);
+            if (numerosacchetto == 4) sac5 == numeropanini ? showSuccess() : showMistake(5, sac5);
+            if (numerosacchetto == 5) sac6 == numeropanini ? showSuccess() : showMistake(6, sac6);
+        }
+        //Genera una consegna randomica
+        function genera()
+        {   
+            numeropanini = Math.floor(Math.random() * (6 - 1) + 1);
+            numerosacchetto = Math.floor(Math.random() * (5 - 0) + 0);
+            paninid = Math.floor(Math.random() * (2 - 0) + 0);
+            sac1 = 0;
+            sac2 = 0;
+            sac3 = 0;
+            sac4 = 0;
+            sac5 = 0;
+            sac6 = 0;
+            n = numeropanini.toString();
+            frase = "Metti " + n + " panini " + tipi[paninid] + " nella classe " + sale[numerosacchetto];
+            document.getElementById("text").value = frase;
+        }
+        //Drag and drop
+        function allowDrop(ev)
+        {
+            ev.preventDefault();
+        }
+        function drag(ev)
+        {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+        function drop(ev, numeroDelSacchetto)
+        {
+            ev.preventDefault();
+            var draggedElementId = ev.dataTransfer.getData("text");
+            console.log(draggedElementId);
+            sacchetto(numeroDelSacchetto);
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: lightblue;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        img {
+            width: 110px;
+            height: 150px;
+        }
+
+        #sac1 {
+            position: relative;
+            left: 20px;
+        }
+
+        #sac2 {
+            position: relative;
+            left: 203px;
+            bottom: 188px;
+        }
+
+        #sac3 {
+            position: relative;
+            left: 386px;
+            bottom: 376px;
+        }
+
+        #sac4 {
+            position: relative;
+            bottom: 564px;
+            left: 569px;
+        }
+
+        #sac5 {
+            position: relative;
+            bottom: 752px;
+            left: 752px;
+        }
+
+        #sac6 {
+            position: relative;
+            bottom: 940px;
+            left: 935px;
+        }
+
+        #text {
+            width: 500px;
+            background-color: lightblue;
+        }
+
+        #panino {
+            /*Div*/
+            position: relative;
+            bottom: 936px;
+            left: 464px;
+            width: 454px;
+        }
+
+        #pan {
+            /*Immagine*/
+            width: 350px;
+            height: 350px;
+        }
+
+        #body {
+            display: none;
+        }
+
+        .button {
+            position: relative;
+            left: 634px;
+            top: 200px;
+            display: inline-block;
+            text-align: center;
+            white-space: nowrap;
+            color: #FFFFFF;
+            text-decoration: none;
+            line-height: 1.2;
+            font-weight: normal;
+            font-family: sans-serif;
+            font-size: 18px;
+            background-color: #007BFF;
+            border-radius: 30px;
+            padding: 10px 34px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #004A99;
+            border-color: #003875;
+        }
+
+        .button>strong {
+            font-size: 24px;
+        }
+
+        .text {
+        height:70px;
+        font-size: 20px;
+        }
+
+        #sale {
+        /*Div*/
+        position: relative;
+        bottom: 1260px;
+        left: 100px;
+        }
+
+        #sal {
+        /*immagine*/
+        width: 300px;
+        height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body">
+        <h1>METTI I PANINI NEL SACCHETTO GIUSTO</h1>
+        <input type="button" value="INIZIA" id="inizia" onclick="inizia()" class="button">
+        <div id="body">
+            <input type="text" id="text" readonly="readonly" class="text">
+            <input type="button" value="GIOCHIAMO" id="genera" onclick="genera()">
+            <input type="button" value="CONFERMA" id="conferma" onclick="conferma()">
+            <div id="sac1">
+                <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
+                        alt="busta" onclick="sacchetto('sac1')" ondrop="drop(event,1)"
+                        ondragover="allowDrop(event)"><br> 3
+                    SALA A</p>
+            </div>
+            <div id="sac2">
+                <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
+                        alt="busta" onclick="sacchetto('sac2')" ondrop="drop(event,2)"
+                        ondragover="allowDrop(event)"><br> 3
+                    SALA B</p>
+            </div>
+            <div id="sac3">
+                <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
+                        alt="busta" onclick="sacchetto('sac3')" ondrop="drop(event,3)"
+                        ondragover="allowDrop(event)"><br> 5
+                    ENO C</p>
+            </div>
+            <div id="sac4">
+                <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
+                        alt="busta" onclick="sacchetto('sac4')" ondrop="drop(event,4)"
+                        ondragover="allowDrop(event)"><br> 1
+                    B</p>
+            </div>
+            <div id="sac5">
+                <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
+                        alt="busta" onclick="sacchetto('sac5')" ondrop="drop(event,5)"
+                        ondragover="allowDrop(event)"><br> 3
+                    ENO A</p>
+            </div>
+            <div id="sac6">
+                <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
+                        alt="busta" onclick="sacchetto('sac6')" ondrop="drop(event,6)"
+                        ondragover="allowDrop(event)"><br> 3
+                    TR B</p>
+            </div>
+            <div id="panino">
+                <p><img id="pan" src="https://www.pizzaportamivia.it/wp-content/uploads/panino.png" alt="panino"
+                        onclick="panino()" draggable="true" ondragstart="drag(event)"></p>
+            </div>
+            <div id="sale">
+                <p><img id="sal" src="https://cdn.discordapp.com/attachments/702965301779628144/703151238405029938/Background.png" alt="panino"
+                        onclick="panino()" draggable="true" ondragstart="drag(event)"></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
