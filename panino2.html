@@ -25,17 +25,9 @@
         // let sac6 = 0;
         let sac = [0,0,0,0,0,0]; 
         sale = ["3 sala A", "3 sala B", "5 eno C", "1 B", "3 eno A", "3 tr B"];
-        tipi = ["caprese", "salame"];
         let numerosacchetto;
         let numeropanini;
-        let paninid;
-        //Panino appare e scompare + sacchetto() con variabili per incrementare il numero di panini nei sacchetti
-        function panino()
-        {
-            document.getElementById('panino').style.display = 'none';
-            document.getElementById('sal').style.display = 'none';
-        }
-        //Success
+        //Alert
         function showSuccess()
         {
             Swal.fire({
@@ -45,7 +37,6 @@
                 showConfirmButton: true,
             })
         }
-        //mistake
         function showMistake(bagNumber, bagElementsNumber)
         {
             let errorDebugString = "RIPROVA! NEL SACCHETTO " + bagNumber + " CI SONO " + bagElementsNumber + " PANINI, INVECE CE NE DEVONO ESSERE " + numeropanini;
@@ -54,8 +45,9 @@
                 title: 'OPS',
                 text: errorDebugString,
             })
+
         }
-        //Sacchetto
+        //Sacchetti
         function sacchetto(id)
         {
             
@@ -105,10 +97,9 @@
         }
         //Genera una consegna randomica
         function genera()
-        {   
+        {
             numeropanini = Math.floor(Math.random() * (6 - 1) + 1);
             numerosacchetto = Math.floor(Math.random() * (5 - 0) + 0);
-            paninid = Math.floor(Math.random() * (2 - 0) + 0);
             sac1 = 0;
             sac2 = 0;
             sac3 = 0;
@@ -116,7 +107,7 @@
             sac5 = 0;
             sac6 = 0;
             n = numeropanini.toString();
-            frase = "Metti " + n + " panini " + tipi[paninid] + " nella classe " + sale[numerosacchetto];
+            frase = "Metti " + n + " panini nella classe " + sale[numerosacchetto];
             document.getElementById("text").value = frase;
         }
         //Drag and drop
@@ -201,8 +192,8 @@
 
         #pan {
             /*Immagine*/
-            width: 350px;
-            height: 350px;
+            width: 450px;
+            height: 450px;
         }
 
         #body {
@@ -240,19 +231,6 @@
         .text {
         height:70px;
         font-size: 20px;
-        }
-
-        #sale {
-        /*Div*/
-        position: relative;
-        bottom: 1260px;
-        left: 100px;
-        }
-
-        #sal {
-        /*immagine*/
-        width: 300px;
-        height: 300px;
         }
     </style>
 </head>
@@ -303,10 +281,6 @@
             </div>
             <div id="panino">
                 <p><img id="pan" src="https://www.pizzaportamivia.it/wp-content/uploads/panino.png" alt="panino"
-                        onclick="panino()" draggable="true" ondragstart="drag(event)"></p>
-            </div>
-            <div id="sale">
-                <p><img id="sal" src="https://cdn.discordapp.com/attachments/702965301779628144/703151238405029938/Background.png" alt="panino"
                         onclick="panino()" draggable="true" ondragstart="drag(event)"></p>
             </div>
         </div>
