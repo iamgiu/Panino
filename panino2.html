@@ -11,8 +11,7 @@
 
     <script>
         //Pulsante inizia
-        function inizia()
-        {
+        function inizia() {
             document.getElementById("body").style.display = "block";
             document.getElementById("inizia").style.display = "none";
         }
@@ -23,21 +22,12 @@
         // let sac4 = 0;
         // let sac5 = 0;
         // let sac6 = 0;
-        let sac = [0,0,0,0,0,0]; 
+        let sac = [0, 0, 0, 0, 0, 0];
         sale = ["3 sala A", "3 sala B", "5 eno C", "1 B", "3 eno A", "3 tr B"];
-        tipi = ["caprese", "salame"];
         let numerosacchetto;
         let numeropanini;
-        let paninid;
-        //Panino appare e scompare + sacchetto() con variabili per incrementare il numero di panini nei sacchetti
-        function panino()
-        {
-            document.getElementById('panino').style.display = 'none';
-            document.getElementById('sal').style.display = 'none';
-        }
-        //Success
-        function showSuccess()
-        {
+        //Alert
+        function showSuccess() {
             Swal.fire({
                 icon: 'success',
                 title: "CE L'HAI FATTA",
@@ -45,95 +35,106 @@
                 showConfirmButton: true,
             })
         }
-        //mistake
-        function showMistake(bagNumber, bagElementsNumber)
-        {
-            let errorDebugString = "RIPROVA! NEL SACCHETTO " + bagNumber + " CI SONO " + bagElementsNumber + " PANINI, INVECE CE NE DEVONO ESSERE " + numeropanini;
+        function showMistake(bagNumber, bagElementsNumber) {
+            let errorDebugString = "RIPROVA! NEL SACCHETTO " + bagNumber + " CI SONO " + sac[bagNumber - 1] + " PANINI, INVECE CE NE DEVONO ESSERE " + numeropanini;
+            sac[bagNumber - 1] = 0;
             Swal.fire({
                 icon: 'error',
                 title: 'OPS',
                 text: errorDebugString,
             })
+
         }
-        //Sacchetto
-        function sacchetto(id)
-        {
-            
+        //Sacchetti
+        function sacchetto(id) {
             if (typeof (id) == "number") id = "sac" + id;
             console.log(id);
             document.getElementById('panino').style.display = 'block';
-            if (id == "sac1")
-            {
-                sac1 = sac1 + 1;
-                console.log(sac1);
+            if (id == "sac1") {
+                sac[0] = sac[0] + 1;
+                console.log(sac[0]);
             }
-            if (id == "sac2")
-            {
-                sac2 = sac2 + 1;
-                console.log(sac2);
+            if (id == "sac2") {
+                sac[1] = sac[1] + 1;
+                console.log(sac[1]);
             }
-            if (id == "sac3")
-            {
-                sac3 = sac3 + 1;
-                console.log(sac3);
+            if (id == "sac3") {
+                sac[2] = sac[2] + 1;
+                console.log(sac[2]);
             }
-            if (id == "sac4")
-            {
-                sac4 = sac4 + 1;
-                console.log(sac4);
+            if (id == "sac4") {
+                sac[3] = sac[3] + 1;
+                console.log(sac[3]);
             }
-            if (id == "sac5")
-            {
-                sac5 = sac5 + 1;
-                console.log(sac5);
+            if (id == "sac5") {
+                sac[4] = sac[4] + 1;
+                console.log(sac[4]);
             }
-            if (id == "sac6")
-            {
-                sac6 = sac6 + 1;
-                console.log(sac6);
+            if (id == "sac6") {
+                sac[5] = sac[5] + 1;
+                console.log(sac[5]);
             }
         }
         //Conferma
-        function conferma()
-        {
-            if (numerosacchetto == 0) sac1 == numeropanini ? showSuccess() : showMistake(1, sac1);
-            if (numerosacchetto == 1) sac2 == numeropanini ? showSuccess() : showMistake(2, sac2);
-            if (numerosacchetto == 2) sac3 == numeropanini ? showSuccess() : showMistake(3, sac3);
-            if (numerosacchetto == 3) sac4 == numeropanini ? showSuccess() : showMistake(4, sac4);
-            if (numerosacchetto == 4) sac5 == numeropanini ? showSuccess() : showMistake(5, sac5);
-            if (numerosacchetto == 5) sac6 == numeropanini ? showSuccess() : showMistake(6, sac6);
+        var giuste = 0
+        var sbagliate = 0
+
+        function conferma() {
+            /*if (numerosacchetto == 0) sac[0] == numeropanini ? showSuccess() : showMistake(1);
+            if (numerosacchetto == 1) sac[1] == numeropanini ? showSuccess() : showMistake(2);
+            if (numerosacchetto == 2) sac[2] == numeropanini ? showSuccess() : showMistake(3);
+            if (numerosacchetto == 3) sac[3] == numeropanini ? showSuccess() : showMistake(4);
+            if (numerosacchetto == 4) sac[4] == numeropanini ? showSuccess() : showMistake(5);
+            if (numerosacchetto == 5) sac[5] == numeropanini ? showSuccess() : showMistake(6);*/
+            for (var i = 0; i < 6; i++) {
+                if (numerosacchetto == i) {
+                if (sac[i] == numeropanini) {
+                    giuste = giuste + 1;
+                    showSuccess();
+                }
+                else {
+                    sbagliate = sbagliate + 1;
+                    showMistake(i+1);
+                }
+            }
+        }
+        document.getElementById("giuste").innerHTML = giuste;
+        document.getElementById("sbagliate").innerHTML = sbagliate;
         }
         //Genera una consegna randomica
-        function genera()
-        {   
+        function genera() {
             numeropanini = Math.floor(Math.random() * (6 - 1) + 1);
             numerosacchetto = Math.floor(Math.random() * (5 - 0) + 0);
-            paninid = Math.floor(Math.random() * (2 - 0) + 0);
-            sac1 = 0;
-            sac2 = 0;
-            sac3 = 0;
-            sac4 = 0;
-            sac5 = 0;
-            sac6 = 0;
+            sac = [0, 0, 0, 0, 0, 0];
             n = numeropanini.toString();
-            frase = "Metti " + n + " panini " + tipi[paninid] + " nella classe " + sale[numerosacchetto];
+            frase = "Metti " + n + " panini nella classe " + sale[numerosacchetto];
             document.getElementById("text").value = frase;
         }
         //Drag and drop
-        function allowDrop(ev)
-        {
+        function allowDrop(ev) {
             ev.preventDefault();
         }
-        function drag(ev)
-        {
+        function drag(ev) {
             ev.dataTransfer.setData("text", ev.target.id);
         }
-        function drop(ev, numeroDelSacchetto)
-        {
+        function drop(ev, numeroDelSacchetto) {
             ev.preventDefault();
             var draggedElementId = ev.dataTransfer.getData("text");
             console.log(draggedElementId);
             sacchetto(numeroDelSacchetto);
+            event.target.style.transform =  "rotate(0deg)"
+        }
+        //Animazione Sacchetto quando si inserisce un panino
+        function dregEnter(event, id){
+          if ( event.target.className == "sac" ) {
+            event.target.style.transform =  "rotate(10deg)";
+          }
+        }
+
+        function dragLeave(event){
+          if ( event.target.className == "sac" ) {
+              event.target.style.transform =  "rotate(0deg  )";
+          }
         }
     </script>
 
@@ -154,7 +155,7 @@
         #sac1 {
             position: relative;
             left: 20px;
-        }
+        } 
 
         #sac2 {
             position: relative;
@@ -201,8 +202,8 @@
 
         #pan {
             /*Immagine*/
-            width: 350px;
-            height: 350px;
+            width: 450px;
+            height: 450px;
         }
 
         #body {
@@ -238,21 +239,28 @@
         }
 
         .text {
-        height:70px;
-        font-size: 20px;
+            height: 70px;
+            font-size: 20px;
         }
 
-        #sale {
-        /*Div*/
-        position: relative;
-        bottom: 1260px;
-        left: 100px;
+        table {
+            border-collapse: collapse;
+            width: 190px;
+            height: 120px;
+            position: relative;
+            bottom: 1060px;
+            left: 1118px;
+            text-align: center;
         }
 
-        #sal {
-        /*immagine*/
-        width: 300px;
-        height: 300px;
+        table, td, tr {
+            border: 2px solid black;
+        }
+
+        .sac {
+            position: relative;
+            transition-property: transform;
+            transition-duration: 1s;
         }
     </style>
 </head>
@@ -265,48 +273,62 @@
             <input type="text" id="text" readonly="readonly" class="text">
             <input type="button" value="GIOCHIAMO" id="genera" onclick="genera()">
             <input type="button" value="CONFERMA" id="conferma" onclick="conferma()">
-            <div id="sac1">
-                <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
-                        alt="busta" onclick="sacchetto('sac1')" ondrop="drop(event,1)"
-                        ondragover="allowDrop(event)"><br> 3
-                    SALA A</p>
-            </div>
-            <div id="sac2">
-                <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
-                        alt="busta" onclick="sacchetto('sac2')" ondrop="drop(event,2)"
-                        ondragover="allowDrop(event)"><br> 3
-                    SALA B</p>
-            </div>
-            <div id="sac3">
-                <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
-                        alt="busta" onclick="sacchetto('sac3')" ondrop="drop(event,3)"
-                        ondragover="allowDrop(event)"><br> 5
-                    ENO C</p>
-            </div>
-            <div id="sac4">
-                <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
-                        alt="busta" onclick="sacchetto('sac4')" ondrop="drop(event,4)"
-                        ondragover="allowDrop(event)"><br> 1
-                    B</p>
-            </div>
-            <div id="sac5">
-                <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
-                        alt="busta" onclick="sacchetto('sac5')" ondrop="drop(event,5)"
-                        ondragover="allowDrop(event)"><br> 3
-                    ENO A</p>
-            </div>
-            <div id="sac6">
-                <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
-                        alt="busta" onclick="sacchetto('sac6')" ondrop="drop(event,6)"
-                        ondragover="allowDrop(event)"><br> 3
-                    TR B</p>
-            </div>
+                <div id="sac1">
+                    <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
+                            alt="busta" onclick="sacchetto('sac1')" ondrop="drop(event,1)"
+                            ondragover="allowDrop(event)" draggable="false" ondragenter="dregEnter(event)" ondragleave="dragLeave(event)" class ="sac"><br> 3
+                        SALA A</p>
+                </div>
+                <div id="sac2">
+                    <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
+                            alt="busta" onclick="sacchetto('sac2')" ondrop="drop(event,2)"
+                            ondragover="allowDrop(event)"  draggable="false" ondragenter="dregEnter(event)" ondragleave="dragLeave(event)" class ="sac"><br> 3
+                        SALA B</p>
+                </div>
+                <div id="sac3">
+                    <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
+                            alt="busta" onclick="sacchetto('sac3')" ondrop="drop(event,3)"
+                            ondragover="allowDrop(event)"  draggable="false" ondragenter="dregEnter(event)" ondragleave="dragLeave(event)" class ="sac"><br> 5
+                        ENO C</p>
+                </div>
+                <div id="sac4">
+                    <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
+                            alt="busta" onclick="sacchetto('sac4')" ondrop="drop(event,4)"
+                            ondragover="allowDrop(event)"  draggable="false" ondragenter="dregEnter(event)" ondragleave="dragLeave(event)" class ="sac"><br> 1
+                        B</p>
+                </div>
+                <div id="sac5">
+                    <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
+                            alt="busta" onclick="sacchetto('sac5')" ondrop="drop(event,5)"
+                            ondragover="allowDrop(event)" draggable="false" ondragenter="dregEnter(event)" ondragleave="dragLeave(event)" class ="sac"><br> 3
+                        ENO A</p>
+                </div>
+                <div id="sac6">
+                    <p><img src="https://cdn.discordapp.com/attachments/580465291876892702/689791461834620958/busta.png"
+                            alt="busta" onclick="sacchetto('sac6')" ondrop="drop(event,6)"
+                            ondragover="allowDrop(event)" draggable="false" ondragenter="dregEnter(event)" ondragleave="dragLeave(event)" class ="sac"><br> 3
+                        TR B</p>
+                </div>
+            <table>
+                <tr>
+                    <td>
+                        Sbagliate
+                    </td>
+                    <td>
+                        Corrette
+                    </td>
+                </tr>
+                <tr>
+                    <td id="sbagliate">
+                        0
+                    </td>
+                    <td id="giuste">
+                        0
+                    </td>
+                </tr>
+            </table>
             <div id="panino">
                 <p><img id="pan" src="https://www.pizzaportamivia.it/wp-content/uploads/panino.png" alt="panino"
-                        onclick="panino()" draggable="true" ondragstart="drag(event)"></p>
-            </div>
-            <div id="sale">
-                <p><img id="sal" src="https://cdn.discordapp.com/attachments/702965301779628144/703151238405029938/Background.png" alt="panino"
                         onclick="panino()" draggable="true" ondragstart="drag(event)"></p>
             </div>
         </div>
